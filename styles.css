@@ -6,17 +6,23 @@ body{
 .grid{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, minmax(30px, auto));
+    grid-template-rows: repeat(5, minmax(30px, auto));
     grid-template-areas: 
-    "header header header header header";
+    "logo logo header header header"
+    "sidebar sidebar sidebar sidebar sidebar"
+    "main main main main .";
     
+}
+.logo{
+    grid-area: logo;
+    padding: 0 10px;
 }
 
 header{
     align-items: center;
     display: flex;
     grid-area: header;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 0 10px;
 }
 
@@ -30,6 +36,7 @@ header nav a:nth-child(1){
 
 header nav a {
     text-decoration: none;
+    justify-content: space-evenly;
 }
 
 .menu-hamburguer{ 
@@ -48,16 +55,94 @@ header nav a {
     height: 3px;
     margin: 1.5px 0;
     width: 100%;
-
+    justify-content: end;
 }
+
+main{
+    grid-area: main;
+    padding: 15px;
+}
+
+.sidebar{
+    background-color: white;
+    grid-area: sidebar;
+    padding: 30px 0;
+}
+
+.sidebar nav{
+    align-items: center;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.sidebar nav a{
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
 /* Media Query */
-@media(min-width: 900px){
-/* tudo que eu digitar aqui só será executado se a tela tiver pelo menos 900px de lagura */
+/* tudo que eu digitar aqui só será executado se a tela tiver pelo menos 768px de lagura */
+
+/*Breakpoint para Tablet */
+@media (min-width: 768px){
     header nav{
         display: block;
     }
-
     .menu-hamburguer{
         display: none;
+    }
+}
+@media(max-whidth: 769px){
+    .grid{
+        justify-content: space-evenly;
+    }
+}
+
+/* Breakpoint para Notebooks pequenos */
+@media(min-width:992px){
+    .grid{
+        justify-content: space-evenly;
+        grid-template-areas: 
+        "header header header header header"
+        "main main main . sidebar"
+        "main main main . sidebar"
+        ". . . . sorvete"
+        ". . . . sorvete";
+    }
+    .sidebar{
+        border-radius: 25px;
+        box-shadow: 1px 1px 15px 2px rgb(0, 0, 0, 0.1);
+        margin: 5px;
+
+    }
+    .sidebar nav{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .sorvetinho img{
+        border-radius: 30px;
+        grid-area: sorvete;
+        opacity: 0;
+    }
+}
+
+/* Breakpoint para Notebooks grandes e Desktop */
+@media(min-width:1200px){
+    main{
+        margin: auto;
+        max-width: 1200px;
+    }
+    .grid{
+        justify-content: space-evenly;
+        grid-template-areas: 
+        "logo header header header header"
+        "main main main . sidebar"
+        "main main main . sidebar"
+        ". . . . sorvete"
+        ". . . . sorvete";
     }
 }
